@@ -35,12 +35,6 @@
             android:background="@drawable/diseniobtnmult"
             />
 
-
-        <TextView
-            android:id="@+id/tvMult"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Resultado"/>
     </LinearLayout>
 
 </FrameLayout>

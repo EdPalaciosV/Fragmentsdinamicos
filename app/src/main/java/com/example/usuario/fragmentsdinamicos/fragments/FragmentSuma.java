@@ -1,8 +1,10 @@
 package com.example.usuario.fragmentsdinamicos.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +31,13 @@ public class FragmentSuma extends Fragment {
     EditText etSum2;
     @BindView(R.id.btnSum)
     Button btnSum;
-    @BindView(R.id.tvSum)
-    TextView tvSum;
+
     Unbinder unbinder;
+
+    final String keyReult="RESULT";
+    int resultado;
+
+
 
     public FragmentSuma() {
         // Required empty public constructor
@@ -57,14 +63,28 @@ public class FragmentSuma extends Fragment {
     public void onViewClicked() {
 
         operacionSuma();
+        changeResultFragment(resultado);
     }
 
     public void operacionSuma() {
-        int resultado;
         int numero1=Integer.parseInt(etSum1.getText().toString());
         int numero2=Integer.parseInt(etSum2.getText().toString());
         resultado=numero1+numero2;
+    }
+    public void changeResultFragment(int resultado)
+    {
+        FragmentTransaction transaction;
 
-        tvSum.setText(String.valueOf(resultado));
+        Bundle bundle= new Bundle();
+        bundle.putInt(keyReult,resultado);
+
+        FragmentResult fragmentRusultado=new FragmentResult();
+        fragmentRusultado.setArguments(bundle);
+
+        transaction=getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right,R.anim.enter_from_right,R.anim.exit_to_right);
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.viewFragment,fragmentRusultado);
+        transaction.commit();
     }
 }

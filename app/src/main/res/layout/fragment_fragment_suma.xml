@@ -37,12 +37,6 @@
             android:background="@drawable/diseniobtnsuma"
             />
 
-
-        <TextView
-            android:id="@+id/tvSum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Resultado"/>
     </LinearLayout>
 
 </FrameLayout>
